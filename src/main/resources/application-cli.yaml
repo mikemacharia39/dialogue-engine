@@ -1,0 +1,3 @@
+spring:
+  main:
+    web-application-type: none  # disable the embedded web server in CLI mode

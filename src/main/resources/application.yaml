@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: dialogue-engine
+
+server:
+  port: 8081
+
+llama:
+  model:
+    path: ${LLAMA_MODEL_PATH:/Users/mikehenrymaina/.cache/huggingface/hub/models--TheBloke--TinyLlama-1.1B-Chat-v1.0-GGUF/snapshots/52e7645ba7c309695bec7ac98f4f005b139cf465/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf}
+  temperature: ${LLAMA_TEMPERATURE:0.7}
+  top-p: ${LLAMA_TOP_P:0.9}
+  max-tokens: ${LLAMA_MAX_TOKENS:512}
+  n-ctx: ${LLAMA_N_CTX:2048}
+  threads: ${LLAMA_THREADS:4}
+  stop-strings:
+    - "</s>"
+    - "<|im_end|>"
+    - "User:"
+  biography:
+    file: ${LLAMA_BIOGRAPHY_FILE:biography.txt}
