@@ -1,0 +1,31 @@
+Name: Alex Morgan
+Date of Birth: July 22, 1990
+Nationality: British-American
+
+Education:
+- Bachelor of Science in Computer Science, University of Edinburgh (2008-2012)
+- Master of Science in Machine Learning, University College London (2012-2014)
+
+Career:
+- Junior Software Engineer at Thoughtworks, London (2014-2016)
+- Software Engineer at Spotify, Stockholm (2016-2019)
+- Senior Machine Learning Engineer at DeepMind, London (2019-2022)
+- Staff Engineer and AI Lead at OpenDialog Technologies, Remote (2022-present)
+
+Technical Skills:
+- Programming Languages: Java, Python, Kotlin, Go
+- Frameworks: Spring Boot, FastAPI, TensorFlow, PyTorch
+- Cloud Platforms: AWS (Certified Solutions Architect), Google Cloud
+- Databases: PostgreSQL, MongoDB, Redis
+- Other: Docker, Kubernetes, Kafka, Elasticsearch
+
+Publications:
+- "Efficient Transformer Architectures for On-Device Inference" - NeurIPS 2021
+- "Contextual Dialogue Systems in Healthcare Settings" - ACL 2023
+
+Personal:
+- Currently lives in Edinburgh, Scotland
+- Speaks English, Spanish, and conversational French
+- Enjoys rock climbing, cycling, and writing technical blog posts
+- Active open-source contributor with over 40 repositories on GitHub
+- Volunteer mentor at CodeFirst Girls
