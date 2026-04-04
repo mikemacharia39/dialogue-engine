@@ -5,6 +5,8 @@ import de.kherud.llama.LlamaModel;
 import de.kherud.llama.LlamaOutput;
 import de.kherud.llama.ModelParameters;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.stream.StreamSupport;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
@@ -26,8 +28,15 @@ public class LlamaInferenceEngine {
     public void initialize() {
         String modelPath = properties.getModel().getPath();
         log.info("Loading LLM from: {}", modelPath);
+        // Redirect stdout/stderr during model loading to suppress native library
+        // loader messages (e.g. "Extracted 'libjllama.dylib'", "ggml-metal not found")
+        // that bypass the Java logger and go directly to the system streams.
+        PrintStream originalOut = System.out;
+        PrintStream originalErr = System.err;
         try {
-            // Suppress llama.cpp native log output
+            System.setOut(new PrintStream(OutputStream.nullOutputStream()));
+            System.setErr(new PrintStream(OutputStream.nullOutputStream()));
+
             LlamaModel.setLogger(de.kherud.llama.args.LogFormat.TEXT, (level, msg) -> {});
 
             model = new LlamaModel(
@@ -35,11 +44,19 @@ public class LlamaInferenceEngine {
                             .setModel(modelPath)
                             .setThreads(properties.getThreads())
                             .setCtxSize(properties.getNCtx())
+                            .disableLog()   // suppress slot/server diagnostic output
+                            .disablePerf()  // suppress prompt/eval timing output
             );
-            log.info("Model loaded successfully");
         } catch (Exception e) {
+            System.setOut(originalOut);
+            System.setErr(originalErr);
             log.error("Failed to initialize LLM model from path '{}': {}", modelPath, e.getMessage());
+            return;
+        } finally {
+            System.setOut(originalOut);
+            System.setErr(originalErr);
         }
+        log.info("Model loaded successfully");
     }
 
     @PreDestroy

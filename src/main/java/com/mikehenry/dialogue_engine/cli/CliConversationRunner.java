@@ -111,6 +111,10 @@ public class CliConversationRunner implements CommandLineRunner {
                 System.out.println();
             }
         }
+
+        // Force JVM exit — native llama.cpp threads are non-daemon and would
+        // otherwise keep the process alive after the chat session ends.
+        System.exit(0);
     }
 
     private void printWelcome() {
