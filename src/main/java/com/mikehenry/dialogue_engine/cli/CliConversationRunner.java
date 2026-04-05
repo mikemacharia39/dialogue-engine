@@ -1,5 +1,7 @@
 package com.mikehenry.dialogue_engine.cli;
 
+import java.util.Scanner;
+
 import com.mikehenry.dialogue_engine.config.LlamaInferenceEngine;
 import com.mikehenry.dialogue_engine.domain.service.ConversationService;
 import com.mikehenry.dialogue_engine.domain.util.PromptBuilder;
@@ -7,8 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-
-import java.util.Scanner;
 
 /**
  * Activates an interactive CLI chat session when the application is run with the "cli" profile.
