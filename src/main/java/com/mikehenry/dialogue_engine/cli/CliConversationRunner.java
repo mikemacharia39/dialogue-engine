@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 public class CliConversationRunner implements CommandLineRunner {
 
     private static final String PROMPT_USER = "You       > ";
-    private static final String PROMPT_BOT  = "Dialogue  > ";
+    private static final String PROMPT_BOT  = "Assistant > ";
     private static final String EXIT_COMMAND = "exit";
 
     private final ConversationService conversationService;
