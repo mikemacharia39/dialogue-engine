@@ -63,7 +63,8 @@ dialogue-engine/
 
 - Java 21+
 - Gradle 9+
-- A GGUF model file (see [TheBloke on Hugging Face](https://huggingface.co/TheBloke) for options)
+- A GGUF model file (see [TheBloke on Hugging Face](https://huggingface.co/TheBloke) for options). 
+  The application at the time of development is using [TinyLlama-1.1B-Chat](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF).
 
 ### Installation
 
