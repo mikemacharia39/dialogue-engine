@@ -55,7 +55,47 @@ dialogue-engine/
         └── EvaluateEndpointTest.java        # MockMvc test for /api/evaluate
 ```
 
+## 🗂️ System Architecture Overview
+
++-------------------+
+|   User Request    |
++-------------------+
+          |
+          v
++-------------------+
+| Spring Boot API   |
+| (Dialogue-Engine) |
++-------------------+
+          |
+          v
++-------------------+
+|   llama.cpp       |
+| (Model Runtime)   |
++-------------------+
+          |
+          v
++---------------------------+
+|   AI Model (GGUF format) |
+| e.g., Mistral 7B, LLaMA 2 |
++---------------------------+
+          |
+          v
++-------------------+
+|   Generated Text  |
++-------------------+
+
+
+### 🔑 Flow Explanation
+1. **User Request** → A client sends a message or question via your REST API.
+2. **Spring Boot API** → Your backend receives the request and routes it to the appropriate service (chat or biography evaluation).
+3. **llama.cpp Runtime** → Acts as the *engine room*, loading and running the chosen AI model locally.
+4. **AI Model (GGUF)** → The actual large language model (e.g., Mistral, LLaMA 2) generates a response.
+5. **Generated Text** → The output is returned to the user through your API.
+
 ---
+
+👉 In short: *Dialogue-Engine is the interface, llama.cpp is the runtime engine, and the GGUF model is the brain.*
+
 
 ## Getting Started
 
@@ -113,6 +153,8 @@ Activate it with the `cli` Spring profile, which also disables the embedded web 
 ```bash
 # via Gradle (stdin is wired automatically)
 ./gradlew bootRun --args='--spring.profiles.active=cli'
+
+The preferred approach is to build the project first and run the JAR directly. This ensures the CLI mode works as expected without Gradle's process management.
 
 # via JAR (build first with ./gradlew bootJar)
 java -jar build/libs/dialogue-engine-0.0.1-SNAPSHOT.jar --spring.profiles.active=cli
