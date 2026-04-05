@@ -106,6 +106,10 @@ dialogue-engine/
 - A GGUF model file (see [TheBloke on Hugging Face](https://huggingface.co/TheBloke) for options). 
   The application at the time of development is using [TinyLlama-1.1B-Chat](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF).
 
+#### Model Preferences
+- [tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/blob/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf) medium size, but hallucinates more
+- [tinyllama-1.1b-chat-v1.0.Q5_K_M.gguf](https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/blob/main/tinyllama-1.1b-chat-v1.0.Q5_K_M.gguf) large, very low quality loss - recommended
+
 ### Installation
 
 ```bash
