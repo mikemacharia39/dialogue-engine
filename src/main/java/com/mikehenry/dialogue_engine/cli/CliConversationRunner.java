@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.mikehenry.dialogue_engine.config.LlamaInferenceEngine;
 import com.mikehenry.dialogue_engine.domain.service.ConversationService;
 import com.mikehenry.dialogue_engine.domain.util.PromptBuilder;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
  * or:
  *   java -jar build/libs/dialogue-engine-0.0.1-SNAPSHOT.jar --spring.profiles.active=cli
  */
+@RequiredArgsConstructor
 @Slf4j
 @Profile("cli")
 @Component
@@ -31,14 +33,6 @@ public class CliConversationRunner implements CommandLineRunner {
     private final ConversationService conversationService;
     private final PromptBuilder promptBuilder;
     private final LlamaInferenceEngine inferenceEngine;
-
-    public CliConversationRunner(ConversationService conversationService,
-                                 PromptBuilder promptBuilder,
-                                 LlamaInferenceEngine inferenceEngine) {
-        this.conversationService = conversationService;
-        this.promptBuilder = promptBuilder;
-        this.inferenceEngine = inferenceEngine;
-    }
 
     @Override
     public void run(String... args) {

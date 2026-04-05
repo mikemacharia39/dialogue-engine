@@ -1,17 +1,19 @@
 package com.mikehenry.dialogue_engine.domain.service.impl;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
 import com.mikehenry.dialogue_engine.config.LlamaInferenceEngine;
 import com.mikehenry.dialogue_engine.config.LlamaProperties;
 import com.mikehenry.dialogue_engine.domain.service.BiographyEvaluationService;
 import com.mikehenry.dialogue_engine.domain.util.PromptBuilder;
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-
+@RequiredArgsConstructor
 @Slf4j
 @Service
 public class BiographyEvaluationServiceImpl implements BiographyEvaluationService {
@@ -20,14 +22,6 @@ public class BiographyEvaluationServiceImpl implements BiographyEvaluationServic
     private final PromptBuilder promptBuilder;
     private final LlamaProperties properties;
     private String biographyContent;
-
-    public BiographyEvaluationServiceImpl(LlamaInferenceEngine inferenceEngine,
-                                          PromptBuilder promptBuilder,
-                                          LlamaProperties properties) {
-        this.inferenceEngine = inferenceEngine;
-        this.promptBuilder = promptBuilder;
-        this.properties = properties;
-    }
 
     @PostConstruct
     public void loadBiography() {
