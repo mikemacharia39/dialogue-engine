@@ -8,6 +8,7 @@ import com.mikehenry.dialogue_engine.controller.dto.EvaluateRequest;
 import com.mikehenry.dialogue_engine.controller.dto.EvaluateResponse;
 import com.mikehenry.dialogue_engine.domain.service.BiographyEvaluationService;
 import com.mikehenry.dialogue_engine.domain.service.ConversationService;
+import io.micrometer.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class DialogueController {
      */
     @PostMapping(value = "/chat", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ChatResponse> chat(@RequestBody ChatRequest request) {
-        log.info("POST /api/chat — message length: {}", request.message() != null ? request.message().length() : 0);
+        log.info("POST /api/chat — message length: {}", StringUtils.isNotBlank(request.message()) ? request.message().length() : 0);
         String response = conversationService.chat(request.message());
         return ResponseEntity.ok(ChatResponse.of(response));
     }
